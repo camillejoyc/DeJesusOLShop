@@ -105,11 +105,11 @@ function login() {
   .then(res => res.json())
   .then(data => {
     if (data.status === "success") {
-      result.innerText = "Login successful!";
-      result.className = "message success";
+     // result.innerText = "Login successful!";
+      ///result.className = "message success";
 
       // Optional: redirect or show dashboard
-      // window.location.href = "dashboard.html";
+      window.location.href = "dashboard.html";
       
     } else {
       result.innerText = "Invalid email or password";

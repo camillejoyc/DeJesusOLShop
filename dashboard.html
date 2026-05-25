@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Dashboard</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      background: #f4f6f9;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 220px;
+      background: #1f2d3d;
+      color: #fff;
+      height: 100vh;
+      padding-top: 20px;
+      position: fixed;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 20px;
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #34495e;
+      color: #fff;
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      margin-left: 220px;
+      padding: 20px;
+      width: 100%;
+    }
+
+    header {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+      color: #333;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 10px;
+      color: #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .card h3 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+    }
+
+    .card p {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .overdue {
+      background: #e74c3c;
+    }
+
+    .collectibles {
+      background: #27ae60;
+    }
+
+    .extra {
+      background: #3498db;
+    }
+
+    .logout {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .logout button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #e74c3c;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .logout button:hover {
+      background: #c0392b;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>Loan System</h2>
+
+  <a href="#">🏠 Dashboard</a>
+  <a href="#">➕ New Customer</a>
+  <a href="#">📁 Record Keeping</a>
+
+  <div class="logout">
+    <button onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <header>
+    <h1>Dashboard Overview</h1>
+  </header>
+
+  <div class="cards">
+
+    <div class="card overdue">
+      <h3>Overdue Customers</h3>
+      <p id="overdueCount">12</p>
+    </div>
+
+    <div class="card collectibles">
+      <h3>Total Collectibles</h3>
+      <p id="collectiblesAmount">₱ 125,000</p>
+    </div>
+
+    <div class="card extra">
+      <h3>Active Loans</h3>
+      <p id="activeLoans">35</p>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function logout() {
+  localStorage.removeItem("userEmail");
+  window.location.href = "index.html"; // back to login page
+}
+
+/* OPTIONAL: you can load dynamic data here later */
+</script>
+
+</body>
+</html>
