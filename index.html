@@ -1,22 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Portal</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4A90E2, #6FCF97);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      width: 320px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input:focus {
+      border-color: #4A90E2;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      background: #4A90E2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #357ABD;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
 </head>
+
 <body>
 
-<h2>Login</h2>
+<div class="login-container">
+  <h2>Welcome Back</h2>
 
-<input type="email" id="email" placeholder="Email"><br><br>
-<input type="password" id="password" placeholder="Password"><br><br>
-<button onclick="login()">Login</button>
+  <input type="email" id="email" placeholder="Enter your email">
+  <input type="password" id="password" placeholder="Enter your password">
 
-<p id="result"></p>
+  <button onclick="login()">Login</button>
+
+  <p id="result" class="message"></p>
+</div>
 
 <script>
 function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+  const result = document.getElementById("result");
+
+  result.innerText = "Logging in...";
+  result.className = "message";
 
   fetch("https://script.google.com/macros/s/AKfycbzwwxyNAQpdobtPpltCWjHJNOfe7AeO3jFyaYAAnXU0ECjGFGiQDeC4y3615ZSDvZNexA/exec", {
     method: "POST",
@@ -25,10 +105,20 @@ function login() {
   .then(res => res.json())
   .then(data => {
     if (data.status === "success") {
-      document.getElementById("result").innerText = "Login successful!";
+      result.innerText = "Login successful!";
+      result.className = "message success";
+
+      // Optional: redirect or show dashboard
+      // window.location.href = "dashboard.html";
+      
     } else {
-      document.getElementById("result").innerText = "Invalid credentials";
+      result.innerText = "Invalid email or password";
+      result.className = "message error";
     }
+  })
+  .catch(error => {
+    result.innerText = "Something went wrong!";
+    result.className = "message error";
   });
 }
 </script>
